@@ -10,6 +10,16 @@ import java.util.Objects;
 public class Coordinate {
     /** The 0, 0 Coordinate. */
     public static Coordinate ORIGIN = new Coordinate( 0, 0 );
+    /** The Coordinate representing an increase to X. */
+    public static Coordinate PLUS_X = new Coordinate( 1, 0 );
+    /** The Coordinate representing an increase to Y. */
+    public static Coordinate PLUS_Y = new Coordinate( 0, 1 );
+    /** The Coordinate representing a decrease to X. */
+    public static Coordinate MINUS_X = new Coordinate( -1, 0 );
+    /** The Coordinate representing a decrease to Y. */
+    public static Coordinate MINUS_Y = new Coordinate( 0, -1 );
+    /** A list of Coordinates representing the four cardinal directions. */
+    public static Coordinate[] DIRECTIONS = { PLUS_X, PLUS_Y, MINUS_X, MINUS_Y };
 
     /** The X component. */
     private final int x;

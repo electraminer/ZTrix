@@ -1,8 +1,10 @@
-package electra.ztrix.model.game.common;
+package electra.ztrix.model.game.region;
 
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+
+import electra.ztrix.model.game.common.Coordinate;
 
 /**
  * A generic Region containing an arbitrary Set of Coordinates.
@@ -43,7 +45,7 @@ public class SetRegion implements Region {
                 maxY = position.getY();
             }
         }
-        return new Rectangle( minX, minY, maxX, maxY );
+        return new Rectangle( minX, minY, maxX + 1, maxY + 1 );
     }
 
     /**
@@ -74,8 +76,20 @@ public class SetRegion implements Region {
     }
 
     @Override
+    public int count () {
+        return set.size();
+    }
+
+    @Override
+    public boolean contains ( Coordinate position ) {
+        if ( position == null ) {
+            throw new NullPointerException( "contains(position) must be non-null." );
+        }
+        return set.contains( position );
+    }
+
+    @Override
     public Rectangle getBounds () {
         return bounds;
     }
-
 }

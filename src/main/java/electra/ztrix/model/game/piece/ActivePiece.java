@@ -3,8 +3,8 @@ package electra.ztrix.model.game.piece;
 import electra.ztrix.model.game.action.Revertable;
 import electra.ztrix.model.game.board.Board;
 import electra.ztrix.model.game.common.Coordinate;
-import electra.ztrix.model.game.common.Region;
 import electra.ztrix.model.game.common.Rotation;
+import electra.ztrix.model.game.region.Region;
 
 /**
  * A mutable class that represents a moving ActivePiece on a Board, with a
@@ -226,8 +226,7 @@ public class ActivePiece {
      */
     public Revertable place () {
         Coordinate prevPos = position;
-        Coordinate down = new Coordinate( 0, -1 );
-        while ( move( down ) != null ) {
+        while ( move( Coordinate.MINUS_Y ) != null ) {
             // Keep moving down til you hit the floor.
         }
         // Place the piece, saving a Revertable to revert the placement.

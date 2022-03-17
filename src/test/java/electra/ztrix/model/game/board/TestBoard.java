@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 
 import electra.ztrix.model.game.action.Revertable;
 import electra.ztrix.model.game.common.Coordinate;
-import electra.ztrix.model.game.common.Rectangle;
-import electra.ztrix.model.game.common.Region;
+import electra.ztrix.model.game.region.Rectangle;
+import electra.ztrix.model.game.region.Region;
 
 /**
  * Tests the Board class.

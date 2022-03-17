@@ -1,8 +1,11 @@
-package electra.ztrix.model.game.common;
+package electra.ztrix.model.game.region;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
+
+import electra.ztrix.model.game.common.Coordinate;
+import electra.ztrix.model.game.common.Rotation;
 
 /**
  * A rectangular Region with efficient containment checks. Can be used as a
@@ -77,6 +80,34 @@ public class Rectangle implements Region {
     }
 
     @Override
+    public int count () {
+        int width = maximum.getX() - minimum.getX();
+        int height = maximum.getY() - minimum.getY();
+        return width * height;
+    }
+
+    @Override
+    public boolean contains ( Coordinate position ) {
+        if ( position == null ) {
+            throw new NullPointerException( "contains(position) must be non-null." );
+        }
+        // Check against each edge of the Rectangle.
+        if ( position.getX() < minimum.getX() ) {
+            return false;
+        }
+        if ( position.getY() < minimum.getY() ) {
+            return false;
+        }
+        if ( position.getX() >= maximum.getX() ) {
+            return false;
+        }
+        if ( position.getY() >= maximum.getY() ) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
     public Rectangle getBounds () {
         return this;
     }
@@ -102,40 +133,14 @@ public class Rectangle implements Region {
         }
         // Rotate the corners of the Rectangle.
         Coordinate rotatedMinimum = minimum.rotate( direction, center );
-        Coordinate rotatedMaximum = maximum.rotate( direction, center );
+        Coordinate inclusiveMaximum = maximum.minus( new Coordinate( 1, 1 ) );
+        Coordinate rotatedMaximum = inclusiveMaximum.rotate( direction, center );
         // Rotation does not preserve corners, so fix with min() and max().
         int minX = Math.min( rotatedMinimum.getX(), rotatedMaximum.getX() );
         int minY = Math.min( rotatedMinimum.getY(), rotatedMaximum.getY() );
         int maxX = Math.max( rotatedMinimum.getX(), rotatedMaximum.getX() );
         int maxY = Math.max( rotatedMinimum.getY(), rotatedMaximum.getY() );
-        return new Rectangle( minX, minY, maxX, maxY );
-    }
-
-    /**
-     * Checks whether the Rectangle contains a position.
-     *
-     * @param position
-     *            The position to check, non-null.
-     * @return True if the Rectangle contains the position.
-     */
-    public boolean contains ( Coordinate position ) {
-        if ( position == null ) {
-            throw new NullPointerException( "contains(position) must be non-null." );
-        }
-        // Check against each edge of the Rectangle.
-        if ( position.getX() < minimum.getX() ) {
-            return false;
-        }
-        if ( position.getY() < minimum.getY() ) {
-            return false;
-        }
-        if ( position.getX() >= maximum.getX() ) {
-            return false;
-        }
-        if ( position.getY() >= maximum.getY() ) {
-            return false;
-        }
-        return true;
+        return new Rectangle( minX, minY, maxX + 1, maxY + 1 );
     }
 
     /**

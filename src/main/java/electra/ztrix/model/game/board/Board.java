@@ -5,8 +5,8 @@ import java.util.Queue;
 
 import electra.ztrix.model.game.action.Revertable;
 import electra.ztrix.model.game.common.Coordinate;
-import electra.ztrix.model.game.common.Rectangle;
-import electra.ztrix.model.game.common.Region;
+import electra.ztrix.model.game.region.Rectangle;
+import electra.ztrix.model.game.region.Region;
 
 /**
  * A grid of Minos that can be checked and modified.

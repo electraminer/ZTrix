@@ -1,7 +1,10 @@
-package electra.ztrix.model.game.common;
+package electra.ztrix.model.game.region;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import electra.ztrix.model.game.common.Coordinate;
+import electra.ztrix.model.game.common.Rotation;
 
 /**
  * An immutable interface containing a set of Coordinate positions.
@@ -9,6 +12,22 @@ import java.util.List;
  * @author Electra
  */
 public interface Region extends Iterable<Coordinate> {
+
+    /**
+     * Gets the number of positions in the Region.
+     *
+     * @return The number of positions in the Region.
+     */
+    public int count ();
+
+    /**
+     * Checks whether the Region contains a position.
+     *
+     * @param position
+     *            The position to check, non-null.
+     * @return True if the Region contains the position.
+     */
+    public boolean contains ( Coordinate position );
 
     /**
      * Gets the Rectangle bounding box of the Region.

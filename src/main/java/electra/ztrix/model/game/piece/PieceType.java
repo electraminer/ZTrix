@@ -8,9 +8,9 @@ import java.util.Map;
 import electra.ztrix.model.game.board.Board;
 import electra.ztrix.model.game.board.Mino;
 import electra.ztrix.model.game.common.Coordinate;
-import electra.ztrix.model.game.common.Region;
 import electra.ztrix.model.game.common.Rotation;
-import electra.ztrix.model.game.common.SetRegion;
+import electra.ztrix.model.game.region.Region;
+import electra.ztrix.model.game.region.SetRegion;
 
 /**
  * An immutable Object defining a piece's Mino, shape and rotation behavior,
